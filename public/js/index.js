@@ -9,10 +9,15 @@ socket.on('disconnect', function () {
 });
 
 socket.on('newMessage', function (message) {
-  console.log('New Message received!.', message);
-  var li = jQuery('<li></li>');
-  li.text(`${message.from}: ${message.text}`);
-  jQuery('#messages').append(li);
+  var formattedTime = moment(message.createdAt).format('h:mm a');
+  var template = jQuery('#message-template').html();
+  var html = Mustache.render(template, {
+    text: message.text,
+    from: message.from,
+    createdAt: formattedTime
+  });
+
+  jQuery('#messages').append(html);
 });
 
 socket.on('newLocationMessage', function (message) {
