@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
     console.log('Message to look up!', message);
 
     io.emit('newMessage', generateMessage(message.from,message.text));
-    callback('Sent from server!.');
+    callback();
   });
 
   socket.on('createLocationMessage', (coords) => {
