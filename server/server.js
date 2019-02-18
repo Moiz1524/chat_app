@@ -2,6 +2,8 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
+// const ejs = require('ejs');
+// const engine = require('ejs-mate');
 
 
 const {generateMessage, generateLocationMessage} = require('./utils/message')
@@ -12,6 +14,14 @@ var server = http.createServer(app);
 var io = socketIO(server);
 
 app.use(express.static(publicPath));
+// app.engine('ejs', engine);
+// app.set('view-engine', 'ejs');
+
+// require('./../routes/userRoutes')(app);
+
+// app.get('/signup', (req, res) => {
+//   res.render('signup');
+// });
 
 io.on('connection', (socket) => {
   console.log('New user connected!');
